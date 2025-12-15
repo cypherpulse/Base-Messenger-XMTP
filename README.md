@@ -1,5 +1,17 @@
 # Base Messenger
 
+<div align="center">
+
+  <img src="https://img.shields.io/badge/Base-Network-0052FF?style=for-the-badge&logo=ethereum" alt="Base" />
+  <img src="https://img.shields.io/badge/XMTP-Protocol-000000?style=for-the-badge&logo=matrix" alt="XMTP" />
+  <img src="https://img.shields.io/badge/Reown_AppKit-1.8.15-FF6B35?style=for-the-badge&logo=walletconnect" alt="Reown AppKit" />
+    <img src="https://img.shields.io/badge/React-19.2.3-blue?style=for-the-badge&logo=react" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-5.8.3-blue?style=for-the-badge&logo=typescript" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-3.4.17-38B2AC?style=for-the-badge&logo=tailwind-css" alt="Tailwind CSS" />
+  
+  <img src="https://img.shields.io/badge/Vite-5.4.19-646CFF?style=for-the-badge&logo=vite" alt="Vite" />
+</div>
+
 A decentralized, WhatsApp-style messaging web app built on the Base network using the XMTP protocol for end-to-end encrypted messaging. Users connect their wallets via Reown/WalletConnect, leveraging their Ethereum addresses on Base as identities for direct and group messaging.
 
 ## Features

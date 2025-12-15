@@ -1,16 +1,16 @@
 /**
  * Hook for wallet connection state and actions
- * Uses Wagmi hooks for wallet connectivity
+ * Uses Reown AppKit for wallet connectivity
  */
 
-import { useAccount, useConnect, useDisconnect, useSignMessage, useSwitchChain } from 'wagmi';
-import { base } from 'wagmi/chains';
+import { useAccount, useDisconnect, useSignMessage, useSwitchChain } from 'wagmi';
+import { base } from '@reown/appkit/networks';
 import { useChatStore } from '@/store/chatStore';
 import { useCallback, useEffect } from 'react';
+import { appKit } from '@/lib/wallet/config';
 
 export function useWalletConnection() {
   const { address, isConnected, isConnecting, chainId } = useAccount();
-  const { connect, connectors } = useConnect();
   const { disconnect } = useDisconnect();
   const { signMessageAsync } = useSignMessage();
   const { switchChain } = useSwitchChain();
@@ -42,13 +42,10 @@ export function useWalletConnection() {
     }
   }, [isConnected, address, profile, setProfile]);
 
-  // Connect to first available connector (typically injected wallet)
+  // Open AppKit modal for connection
   const handleConnect = useCallback(() => {
-    const connector = connectors[0];
-    if (connector) {
-      connect({ connector });
-    }
-  }, [connect, connectors]);
+    appKit.open();
+  }, []);
 
   // Sign a message (used for XMTP initialization)
   const signMessage = useCallback(
@@ -66,11 +63,9 @@ export function useWalletConnection() {
     isConnecting,
     isOnBase,
     chainId,
-    connectors,
     
     // Actions
     connect: handleConnect,
-    connectWith: (connector: typeof connectors[number]) => connect({ connector }),
     disconnect: () => disconnect(),
     switchToBase,
     signMessage,

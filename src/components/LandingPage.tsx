@@ -1,14 +1,10 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Wallet, Shield, MessageCircle, Zap, Globe, ChevronRight } from 'lucide-react';
+import { Wallet, Shield, MessageCircle, Zap, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useWalletConnection } from '@/hooks/useWalletConnection';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { AppKitButton } from '@reown/appkit/react';
 
 export function LandingPage() {
-  const { connect, connectWith, connectors, isConnecting } = useWalletConnection();
-  const [showConnectors, setShowConnectors] = useState(false);
-
   const features = [
     {
       icon: Shield,
@@ -26,11 +22,6 @@ export function LandingPage() {
       description: 'Fast, low-cost transactions on L2',
     },
   ];
-
-  const handleConnectorClick = (connector: typeof connectors[number]) => {
-    connectWith(connector);
-    setShowConnectors(false);
-  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -82,15 +73,7 @@ export function LandingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
           >
-            <Button
-              size="lg"
-              onClick={() => setShowConnectors(true)}
-              disabled={isConnecting}
-              className="gradient-primary text-primary-foreground font-semibold px-8 py-6 text-lg rounded-xl glow hover:opacity-90 transition-opacity"
-            >
-              <Wallet className="w-5 h-5 mr-2" />
-              {isConnecting ? 'Connecting...' : 'Connect Wallet'}
-            </Button>
+            <AppKitButton />
           </motion.div>
 
           <p className="mt-4 text-sm text-muted-foreground">
@@ -125,37 +108,6 @@ export function LandingPage() {
       <footer className="relative z-10 p-6 text-center text-sm text-muted-foreground">
         <p>Powered by XMTP • Built on Base</p>
       </footer>
-
-      {/* Connector Selection Modal */}
-      <Dialog open={showConnectors} onOpenChange={setShowConnectors}>
-        <DialogContent className="sm:max-w-md glass border-border">
-          <DialogHeader>
-            <DialogTitle className="flex items-center gap-2">
-              <Wallet className="w-5 h-5 text-primary" />
-              Connect Wallet
-            </DialogTitle>
-          </DialogHeader>
-
-          <div className="space-y-2 py-4">
-            {connectors.map((connector) => (
-              <Button
-                key={connector.uid}
-                variant="outline"
-                className="w-full justify-between h-14 px-4"
-                onClick={() => handleConnectorClick(connector)}
-              >
-                <span className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
-                    <Wallet className="w-4 h-4" />
-                  </div>
-                  <span className="font-medium">{connector.name}</span>
-                </span>
-                <ChevronRight className="w-4 h-4 text-muted-foreground" />
-              </Button>
-            ))}
-          </div>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }

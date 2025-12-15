@@ -11,13 +11,13 @@ import { WagmiProvider } from 'wagmi';
 
 // Get projectId from environment or use placeholder
 // TODO: Replace with your actual WalletConnect project ID from https://cloud.walletconnect.com
-const projectId = import.meta.env.VITE_WALLETCONNECT_PROJECT_ID || 'c4f79cc821944d9680842e34466bfbd';
+const projectId = import.meta.env.VITE_PROJECT_ID || 'c4f79cc821944d9680842e34466bfbd';
 
 const metadata = {
   name: 'Base Messenger',
   description: 'Decentralized messaging on Base with XMTP',
   url: 'http://localhost:8080',
-  icons: ['https://base-messenger.com/icon.png'],
+  icons: ['https://avatars.githubusercontent.com/u/179229932'],
 };
 
 // 0. Setup queryClient
@@ -36,9 +36,6 @@ export const appKit = createAppKit({
   networks: [base],
   metadata,
   projectId,
-  features: {
-    analytics: false,
-  },
 });
 
 // 3. Create AppKitProvider component
