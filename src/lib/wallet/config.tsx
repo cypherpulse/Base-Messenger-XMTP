@@ -1,5 +1,5 @@
 /**
- * Wallet Configuration for Reown AppKit / WalletConnect
+ * Wallet Configuration for Reown AppKit and  WalletConnect
  * Uses Base mainnet (chain ID 8453) as primary network
  */
 
@@ -11,7 +11,7 @@ import { WagmiProvider } from 'wagmi';
 
 // Get projectId from environment or use placeholder
 // TODO: Replace with your actual WalletConnect project ID from https://cloud.walletconnect.com
-const projectId = import.meta.env.VITE_PROJECT_ID || 'c4f79cc821944d9680842e34466bfbd';
+const projectId = import.meta.env.VITE_PROJECT_ID ;
 
 const metadata = {
   name: 'Base Messenger',
