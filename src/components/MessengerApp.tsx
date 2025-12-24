@@ -10,7 +10,7 @@ export function MessengerApp() {
   const { activeConversationId } = useChatStore();
   const { isInitializing, isReady, error } = useXmtpClient();
 
-  // Loading state
+  // Loading state here 
   if (isInitializing) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
@@ -20,7 +20,7 @@ export function MessengerApp() {
           className="text-center"
         >
           <Loader2 className="w-12 h-12 text-primary animate-spin mx-auto mb-4" />
-          <p className="text-muted-foreground">Initializing XMTP...</p>
+          <p className="text-muted-foreground">Initializing XMTP....</p>
         </motion.div>
       </div>
     );
